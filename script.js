@@ -33,7 +33,6 @@ let number1,number2;
 //flags:
 let plusBtnPressed=false,subBtnPressed=false,multBrnPressed=false,diviBtnPressed=false,dotBtnPressed=false;
 let equalBtnisDone=false;
-//let rektaCompute=false;
 
 //button event listeners:
 num1btn.addEventListener('click',() => {
@@ -42,7 +41,6 @@ num1btn.addEventListener('click',() => {
         mainTextField.innerHTML=""
         mainTextField.innerHTML+="1";
         plusBtnPressed=false;
-        //rektaCompute=true;
     }
     if(subBtnPressed){
         mainTextField.innerHTML=""
@@ -59,8 +57,6 @@ num1btn.addEventListener('click',() => {
         mainTextField.innerHTML+="1";
         diviBtnPressed=false;
     }
-    
-    
 })
 num2btn.addEventListener('click',() => {
     mainTextField.innerHTML+="2";
@@ -68,7 +64,6 @@ num2btn.addEventListener('click',() => {
         mainTextField.innerHTML=""
         mainTextField.innerHTML+="2";
         plusBtnPressed=false;
-        //rektaCompute=true;
     }
     if(subBtnPressed){
         mainTextField.innerHTML=""
@@ -85,7 +80,6 @@ num2btn.addEventListener('click',() => {
         mainTextField.innerHTML+="2";
         diviBtnPressed=false;
     }
-    
 })
 num3btn.addEventListener('click',() => {
     mainTextField.innerHTML+="3";
@@ -292,41 +286,66 @@ clearBtn.addEventListener('click',() => {
 deleteBtn.addEventListener('click',()=>{
     mainTextField.innerHTML=mainTextField.innerHTML.substring(0,mainTextField.innerHTML.length-1);
 })
+
 plusbtn.addEventListener('click',() => {
     operator="+"
-    number1=mainTextField.innerHTML;
-    subTextField.innerHTML=`${number1} ${operator} `
+    if((mainTextField.innerHTML!=='')&& (subTextField.innerHTML!=='')){
+        let findOperator=subTextField.innerHTML.replace(/[A-Za-z0-9\s]/g,'');
+        console.log(subTextField.innerHTML.replace(/[A-Za-z0-9\s]/g,''))
+        if(findOperator==="+"){addnumbers()}
+        if(findOperator==="*"){multiplynumbers()}
+        if(findOperator==="/"){dividenumbers()}
+        if(findOperator==="-"){subtractnumbers()}
+    }
+    subTextField.innerHTML=`${mainTextField.innerHTML} ${operator} `
     equalBtnisDone=false;
     plusBtnPressed=true;
     dotBtnPressed=false;
-    //if(rektaCompute){addnumbers()}
-    //if((mainTextField.innerHTML.length!=0)&&(subTextField.innerHTML.length!=0)){addnumbers()}
-    //mainTextField.innerHTML="";
-
 })
 minusbtn.addEventListener('click',() => {
     operator="-"
+    if((mainTextField.innerHTML!=='')&& (subTextField.innerHTML!=='')){
+        let findOperator=subTextField.innerHTML.replace(/[A-Za-z0-9\s]/g,'');
+        console.log(subTextField.innerHTML.replace(/[A-Za-z0-9\s]/g,''));
+        if(findOperator==="+"){addnumbers()}
+        if(findOperator==="*"){multiplynumbers()}
+        if(findOperator==="/"){dividenumbers()}
+        if(findOperator==="-"){subtractnumbers()}
+    }
     subTextField.innerHTML=`${mainTextField.innerHTML} ${operator} `
     equalBtnisDone=false
     subBtnPressed=true;
     dotBtnPressed=false;
-    //mainTextField.innerHTML=""
 })
 dividebtn.addEventListener('click',() => {
     operator="/"
+    if((mainTextField.innerHTML!=='')&& (subTextField.innerHTML!=='')){
+        let findOperator=subTextField.innerHTML.replace(/[A-Za-z0-9\s]/g,'');
+        console.log(subTextField.innerHTML.replace(/[A-Za-z0-9\s]/g,''))
+        if(findOperator==="+"){addnumbers()}
+        if(findOperator==="*"){multiplynumbers()}
+        if(findOperator==="/"){dividenumbers()}
+        if(findOperator==="-"){subtractnumbers()}
+    }
     subTextField.innerHTML=`${mainTextField.innerHTML} ${operator} `
     equalBtnisDone=false;
     diviBtnPressed=true;
     dotBtnPressed=false;
-    //mainTextField.innerHTML=""
 })
 multiplybtn.addEventListener('click',() => {
-    operator="x"
+    operator="*"
+    if((mainTextField.innerHTML!=='')&& (subTextField.innerHTML!=='')){
+        let findOperator=subTextField.innerHTML.replace(/[A-Za-z0-9\s^x]/g,'');
+        console.log(subTextField.innerHTML.replace(/[A-Za-z0-9\s]/g,''))
+        if(findOperator==="+"){addnumbers()}
+        if(findOperator==="*"){multiplynumbers()}
+        if(findOperator==="/"){dividenumbers()}
+        if(findOperator==="-"){subtractnumbers()}
+    }
     subTextField.innerHTML=`${mainTextField.innerHTML} ${operator} `
     equalBtnisDone=false;
     multBrnPressed=true;
     dotBtnPressed=false;
-    //mainTextField.innerHTML=""
 })
 
 equals.addEventListener('click',()=> {
