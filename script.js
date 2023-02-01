@@ -427,6 +427,12 @@ function subtractnumbers(){
 }
 function dividenumbers(){
     let quo;
+    if(mainTextField.innerHTML === "0"){
+        alert("Bestie you cannot divide by zero. Try Again")
+        mainTextField.innerHTML="";
+        number2=null;
+        return;
+    }
     if((subTextField.innerHTML.split(operator)[0].indexOf(".")!== -1 )|| 
     (mainTextField.innerHTML.indexOf(".") !== -1)){
         number1=parseFloat(subTextField.innerHTML.split(operator)[0]);
