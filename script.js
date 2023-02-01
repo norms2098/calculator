@@ -28,10 +28,10 @@ subTextField.innerHTML="";
 
 //global variables:
 let operator;
-let number1,number2,result;
+let number1,number2;
 
 //flags:
-let plusBtnPressed=false,subBtnPressed=false,multBrnPressed=false,diviBtnPressed=false;
+let plusBtnPressed=false,subBtnPressed=false,multBrnPressed=false,diviBtnPressed=false,dotBtnPressed=false;
 let equalBtnisDone=false;
 //let rektaCompute=false;
 
@@ -277,6 +277,13 @@ num0btn.addEventListener('click',() => {
         diviBtnPressed=false;
     }
 })
+dot.addEventListener('click', () => {
+    if(!dotBtnPressed){
+        mainTextField.innerHTML += "."
+        dotBtnPressed=true;
+    }
+    
+})
 clearBtn.addEventListener('click',() => {
     mainTextField.innerHTML="";
     subTextField.innerHTML="";
@@ -291,6 +298,7 @@ plusbtn.addEventListener('click',() => {
     subTextField.innerHTML=`${number1} ${operator} `
     equalBtnisDone=false;
     plusBtnPressed=true;
+    dotBtnPressed=false;
     //if(rektaCompute){addnumbers()}
     //if((mainTextField.innerHTML.length!=0)&&(subTextField.innerHTML.length!=0)){addnumbers()}
     //mainTextField.innerHTML="";
@@ -301,6 +309,7 @@ minusbtn.addEventListener('click',() => {
     subTextField.innerHTML=`${mainTextField.innerHTML} ${operator} `
     equalBtnisDone=false
     subBtnPressed=true;
+    dotBtnPressed=false;
     //mainTextField.innerHTML=""
 })
 dividebtn.addEventListener('click',() => {
@@ -308,6 +317,7 @@ dividebtn.addEventListener('click',() => {
     subTextField.innerHTML=`${mainTextField.innerHTML} ${operator} `
     equalBtnisDone=false;
     diviBtnPressed=true;
+    dotBtnPressed=false;
     //mainTextField.innerHTML=""
 })
 multiplybtn.addEventListener('click',() => {
@@ -315,6 +325,7 @@ multiplybtn.addEventListener('click',() => {
     subTextField.innerHTML=`${mainTextField.innerHTML} ${operator} `
     equalBtnisDone=false;
     multBrnPressed=true;
+    dotBtnPressed=false;
     //mainTextField.innerHTML=""
 })
 
@@ -346,35 +357,102 @@ equals.addEventListener('click',()=> {
 })
 
 function addnumbers(){
-    number1=parseInt(subTextField.innerHTML.split(operator)[0]);
-    number2=parseInt(mainTextField.innerHTML);
-    let sum=number1+number2;
-    subTextField.innerHTML=`${number1} + ${number2} = `
-    mainTextField.innerHTML=sum;
-    equalBtnisDone=true;
+    let sum;
+    if((subTextField.innerHTML.split(operator)[0].indexOf(".")!== -1 )|| 
+    (mainTextField.innerHTML.indexOf(".") !== -1)){
+        number1=parseFloat(subTextField.innerHTML.split(operator)[0]);
+        number2=parseFloat(mainTextField.innerHTML);
+        sum=number1+number2;
+        subTextField.innerHTML=`${number1} + ${number2} = `
+        mainTextField.innerHTML=sum;
+        equalBtnisDone=true;
+        dotBtnPressed=false;
+    }
+    else{
+        number1=parseInt(subTextField.innerHTML.split(operator)[0]);
+        number2=parseInt(mainTextField.innerHTML);
+        sum=number1+number2;
+        subTextField.innerHTML=`${number1} + ${number2} = `
+        mainTextField.innerHTML=sum;
+        equalBtnisDone=true;
+        dotBtnPressed=false;
+    }
 }
+   
 function multiplynumbers(){
-    number1=parseInt(subTextField.innerHTML.split(operator)[0]);
-    number2=parseInt(mainTextField.innerHTML);
-    let prod=number1*number2;
-    subTextField.innerHTML=`${number1} X ${number2} = `
-    mainTextField.innerHTML=prod;
-    equalBtnisDone=true;
+    let prod;
+    if((subTextField.innerHTML.split(operator)[0].indexOf(".")!== -1 )|| 
+    (mainTextField.innerHTML.indexOf(".") !== -1)){
+        number1=parseFloat(subTextField.innerHTML.split(operator)[0]);
+        number2=parseFloat(mainTextField.innerHTML);
+        prod=number1*number2;
+        subTextField.innerHTML=`${number1} X ${number2} = `
+        mainTextField.innerHTML=prod.toFixed(2);
+        equalBtnisDone=true;
+        dotBtnPressed=false;
+    }
+    else{
+        number1=parseInt(subTextField.innerHTML.split(operator)[0]);
+        number2=parseInt(mainTextField.innerHTML);
+        prod=number1*number2;
+        subTextField.innerHTML=`${number1} X ${number2} = `
+        mainTextField.innerHTML=prod;
+        equalBtnisDone=true;
+        dotBtnPressed=false;
+    }
+  
 }
 function subtractnumbers(){
-    number1=parseInt(subTextField.innerHTML.split(operator)[0]);
-    number2=parseInt(mainTextField.innerHTML);
-    let diff=number1-number2;
-    subTextField.innerHTML=`${number1} - ${number2} = `
-    mainTextField.innerHTML=diff;
-    equalBtnisDone=true;
+    let diff;
+    if((subTextField.innerHTML.split(operator)[0].indexOf(".")!== -1 )|| 
+    (mainTextField.innerHTML.indexOf(".") !== -1)){
+        number1=parseFloat(subTextField.innerHTML.split(operator)[0]);
+        number2=parseFloat(mainTextField.innerHTML);
+        diff=number1-number2;
+        subTextField.innerHTML=`${number1} - ${number2} = `
+        mainTextField.innerHTML=diff.toFixed(2);
+        equalBtnisDone=true;
+        dotBtnPressed=false;
+    }
+    else{
+        number1=parseInt(subTextField.innerHTML.split(operator)[0]);
+        number2=parseInt(mainTextField.innerHTML);
+        diff=number1-number2;
+        subTextField.innerHTML=`${number1} - ${number2} = `
+        mainTextField.innerHTML=diff;
+        equalBtnisDone=true;
+        dotBtnPressed=false;
+    }
+    
 }
 function dividenumbers(){
-    number1=parseInt(subTextField.innerHTML.split(operator)[0]);
-    number2=parseInt(mainTextField.innerHTML);
-    let quo=number1-number2;
-    subTextField.innerHTML=`${number1} / ${number2} = `
-    mainTextField.innerHTML=quo;
-    equalBtnisDone=true;
+    let quo;
+    if((subTextField.innerHTML.split(operator)[0].indexOf(".")!== -1 )|| 
+    (mainTextField.innerHTML.indexOf(".") !== -1)){
+        number1=parseFloat(subTextField.innerHTML.split(operator)[0]);
+        number2=parseFloat(mainTextField.innerHTML);
+        quo=number1/number2;
+        subTextField.innerHTML=`${number1} / ${number2} = `
+        mainTextField.innerHTML=quo.toFixed(2);
+        equalBtnisDone=true;
+        dotBtnPressed=false;
+    }
+    else{
+        number1=parseInt(subTextField.innerHTML.split(operator)[0]);
+        number2=parseInt(mainTextField.innerHTML);
+        quo=number1/number2;
+        subTextField.innerHTML=`${number1} / ${number2} = `
+
+        if(quo.toString().indexOf(".") !== -1){
+            mainTextField.innerHTML=quo.toFixed(2);
+        }
+        else{
+            mainTextField.innerHTML=quo;
+        }
+        
+        equalBtnisDone=true;
+        dotBtnPressed=false;
+    }
+    
 }
 
